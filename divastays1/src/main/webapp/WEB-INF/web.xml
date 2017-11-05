@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<web-app xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/javaee/web-app.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
+<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+<context-param>
+<param-name>contextConfigLocation</param-name>
+<param-value>/WEB-INF/spring/root-context.xml</param-value>
+</context-param>
+<!-- Creates the Spring Container shared by all Servlets and Filters -->
+<listener>
+<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+<!-- Processes application requests -->
+<servlet>
+<servlet-name>dispatcherServlet</servlet-name>
+<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+<init-param>
+<param-name>contextConfigLocation</param-name>
+<param-value>/WEB-INF/spring/dispatcherServlet/servlet-context.xml </param-value>
+</init-param>
+<load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+<servlet-name>dispatcherServlet</servlet-name>
+<url-pattern>/</url-pattern>
+</servlet-mapping>
+<jsp-config>
+    <jsp-property-group>
+        <url-pattern>*.jsp</url-pattern>
+        <page-encoding>UTF-8</page-encoding>
+    </jsp-property-group>
+</jsp-config>
+<session-config>
+  <session-timeout>10</session-timeout>
+</session-config>
+ <filter>
+    <filter-name>noCacheFilter</filter-name>
+    <filter-class>com.smsone.util.NoBrowserCacheFilter</filter-class>
+ </filter>
+ <filter-mapping>
+  <filter-name>noCacheFilter</filter-name>
+  <url-pattern>/showHome</url-pattern>
+  <url-pattern>/showShortTerm</url-pattern>
+  <url-pattern>/login</url-pattern>
+  <url-pattern>/logout</url-pattern>
+  <url-pattern>/showFilter</url-pattern>
+  <url-pattern>/showLongTerm</url-pattern>
+  <url-pattern>/showHouseInfo/showHome</url-pattern>
+  <url-pattern>/showOwnerPage</url-pattern>
+  <url-pattern>/showHouseInfo/{hId}</url-pattern>
+  <url-pattern>/showHouseInfo/showPaymentPage</url-pattern>
+  <url-pattern>/showPaymentPage</url-pattern>
+  <url-pattern>/logoutOwner</url-pattern>
+  <url-pattern>/showHouseReg</url-pattern>
+  <url-pattern>/showRoomReg</url-pattern>
+ </filter-mapping>
+</web-app>

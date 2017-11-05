@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans default-lazy-init="true" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context" xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/mvc">
+<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+<!-- Enables the Spring MVC @Controller programming model -->
+<annotation-driven/>
+<context:component-scan base-package="com.smsone.controller"/>
+<!-- Handles HTTP GET requests for /web-resources/** by efficiently serving up static resources in the ${webappRoot}/resources/ directory -->
+
+
+<mvc:resources mapping="/js/**" location="/assets/js/" />
+        <mvc:resources mapping="/css/**" location="/assets/css/" />
+        <mvc:resources mapping="/images/**" location="/assets/images/" />
+
+
+
+<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<beans:property value="/WEB-INF/views/" name="prefix"/>
+<beans:property value=".jsp" name="suffix"/>
+</beans:bean>
+<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+<!-- setting maximum upload size -->
+<beans:property value="1000000000000000" name="maxUploadSize"/>
+</beans:bean>
+
+</beans:beans>
